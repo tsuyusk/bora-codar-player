@@ -59,6 +59,9 @@ export const Player: React.FC<PlayerProps> = ({ row = false, shouldShowControls 
   }, [music]);
 
   const moveQuery = useCallback((direction: string) => {
+    setElapsedTime(0);
+    audio.pause();
+
     if (direction === 'forward') {
       setSelectedIndex(
         state => {
@@ -86,7 +89,7 @@ export const Player: React.FC<PlayerProps> = ({ row = false, shouldShowControls 
         return newState;
       }
     );
-  }, []);
+  }, [audio]);
 
   const handleSwitchPlaying = useCallback(() => {
     setIsRunning(state => !state);
@@ -96,10 +99,6 @@ export const Player: React.FC<PlayerProps> = ({ row = false, shouldShowControls 
     // 0.1 so the progress bar is smoother
     setElapsedTime(state => state + 0.1);
   }, []);
-
-  useEffect(() => {
-    setElapsedTime(0);
-  }, [music]);
 
   useEffect(() => {
     if (isRunning) {
