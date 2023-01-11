@@ -3,6 +3,9 @@
 ![Page](https://i.ibb.co/9n0HQbr/imagem-2023-01-10-232410395.png)
 
 Sup!
+
+First of all, you can test the website in your browser by clicking [here](https://boracodar-player.vercel.app)
+
 This repo contains the code of the first challenge of "Bora Codar" event from rocketseat
 The challenge consists of cloning [this interface](https://www.figma.com/file/jHSpzsQYp453QTmxJsae3l/boraCodar-Desafio-1-Copy?fuid=827675393442215472)
 
