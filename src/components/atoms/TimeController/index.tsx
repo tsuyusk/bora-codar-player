@@ -5,12 +5,12 @@ import * as S from './styles'
 
 interface TimeControllerProps {
   isRunning: boolean;
+  elapsedTime: number;
+  onElapseTime(): void;
   timeInSeconds?: number;
 }
 
-export const TimeController: React.FC<TimeControllerProps> = ({ isRunning, timeInSeconds = 200 }) => {
-  const [elapsedTime, setElapsedTime] = useState(0);
-
+export const TimeController: React.FC<TimeControllerProps> = ({ elapsedTime, onElapseTime, isRunning, timeInSeconds = 200 }) => {
   useEffect(() => {
     const { clear } = setInterval(() => {
       if (!isRunning) {
@@ -21,7 +21,7 @@ export const TimeController: React.FC<TimeControllerProps> = ({ isRunning, timeI
         return;
       }
 
-      setElapsedTime(state => state + 0.1);
+      onElapseTime();
     }, 100);
 
     return () => {

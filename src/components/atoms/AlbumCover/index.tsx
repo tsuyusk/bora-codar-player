@@ -10,7 +10,7 @@ interface AlbumCoverProps {
 export const AlbumCover: React.FC<AlbumCoverProps> = ({ music, imgSize, row }) => {
   return (
     <S.Container row={row} imgSize={imgSize}>
-      <img src={music.image} alt="'Acorda Devinho' Album Cover" />
+      <img src={music.image} alt={`'${music.title}' Album Cover`} />
 
       <div>
         <h1>{music.title}</h1>

@@ -3,4 +3,5 @@ export interface Music {
   band: string;
   duration: number;
   image: string;
+  song: string;
 }

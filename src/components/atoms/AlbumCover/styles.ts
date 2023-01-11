@@ -8,6 +8,8 @@ interface ContainerProps {
 export const Container = styled.div<ContainerProps>`
   display: flex;
   user-select: none;
+
+  width: 100%;
   
   ${props => !props.row && css`
     flex-direction: column;

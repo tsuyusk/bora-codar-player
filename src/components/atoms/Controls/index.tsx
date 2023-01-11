@@ -7,12 +7,13 @@ import pause from '../../../assets/icons/pause.svg';
 interface ControlsProps {
   isRunning: boolean;
   handleSwitchPlaying(): void;
+  moveQuery(direction: string): void;
 }
 
-export const Controls: React.FC<ControlsProps> = ({ isRunning, handleSwitchPlaying }) => {
+export const Controls: React.FC<ControlsProps> = ({ moveQuery, isRunning, handleSwitchPlaying }) => {
   return (
     <S.Container>
-      <button>
+      <button onClick={() => moveQuery('back')}>
         <img src={playBack} alt="Play Back" />
       </button>
 
@@ -22,7 +23,7 @@ export const Controls: React.FC<ControlsProps> = ({ isRunning, handleSwitchPlayi
         : <img src={play} alt="Play" />}
       </button>
 
-      <button>
+      <button onClick={() => moveQuery('forward')}>
         <img src={playForward} alt="Play Forward" />
       </button>
     </S.Container>
