@@ -12,11 +12,11 @@ interface TimeControllerProps {
 
 export const TimeController: React.FC<TimeControllerProps> = ({ elapsedTime, onElapseTime, isRunning, musicDuration = 200 }) => {
   const remainingTime = useMemo(() => {
-    return musicDuration - elapsedTime;
+    return Math.max(0, musicDuration - elapsedTime);
   }, [musicDuration, elapsedTime]);
 
   const elapsedTimePercentage = useMemo(() => {
-    return ((elapsedTime / musicDuration) * 100);
+    return Math.min(100, ((elapsedTime / musicDuration) * 100));
   }, [elapsedTime, musicDuration]);
 
   useEffect(() => {
