@@ -1,6 +1,6 @@
 export function secondsToMinutes(seconds: number) {   
-    var mins = ~~((seconds % 3600) / 60);
-    var secs = ~~seconds % 60;
+    var mins = Math.floor((seconds / 60));
+    var secs = Math.floor(seconds % 60);
 
     var ret = "";
 

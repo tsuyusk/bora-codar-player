@@ -4,13 +4,13 @@ import { Player } from '../../components/molecules/Player';
 export function Main() {
   return (
     <S.Container>
-      <div>
+      <section>
         <Player />
 
         <Player row={true} />
 
         <Player row={true} shouldShowTimeController={false} />
-      </div>
+      </section>
     </S.Container>
   )
 }

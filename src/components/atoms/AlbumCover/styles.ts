@@ -16,8 +16,8 @@ export const Container = styled.div<ContainerProps>`
   `}
 
   > img {
-    width: ${props => props.imgSize}px;
-    height: ${props => props.imgSize}px;
+    width: ${props => props.imgSize};
+    height: ${props => props.imgSize};
     border-radius: 6px;
     
     pointer-events: none;

@@ -48,13 +48,15 @@ const musics: Music[] = [
 export const Player: React.FC<PlayerProps> = ({ row = false, shouldShowControls = true, shouldShowTimeController = true }) => {
   const [elapsedTime, setElapsedTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
-  const audio = useRef(new Audio());
-
   const [selectedIndex, setSelectedIndex] = useState(0);
-
+  
   const music = useMemo(() => {
     return musics[selectedIndex];
   }, [selectedIndex, musics]);
+
+  const audio = useMemo(() => {
+    return new Audio(music.song);
+  }, [music]);
 
   const moveQuery = useCallback((direction: string) => {
     if (direction === 'forward') {
@@ -96,41 +98,37 @@ export const Player: React.FC<PlayerProps> = ({ row = false, shouldShowControls 
   }, []);
 
   useEffect(() => {
-    audio.current.src = music.song;
-
-    if (isRunning) {
-      audio.current.currentTime = elapsedTime;
-  
-      audio.current.play()
-      return;
-    }
-
-    audio.current.pause();
-  }, [music, isRunning]);
-
-  useEffect(() => {
     setElapsedTime(0);
   }, [music]);
 
+  useEffect(() => {
+    if (isRunning) {
+      audio.currentTime = elapsedTime;
+  
+      audio.play()
+      return;
+    }
+
+    audio.pause();
+  }, [music, isRunning]);
+  
+  const ControlsWrapper = useMemo(() => {
+    return row ? S.ControlsWrapper : React.Fragment;
+  }, [row]);
+
   return (
     <S.Container row={row}>
-      <AlbumCover music={music} imgSize={row ? '84.03' : '189.66'} row={row} />
+      <AlbumCover music={music} imgSize={row ? '84.03px' : '189.66px'} row={row} />
 
       {shouldShowControls && (
-        <>
-          {row
-          ? (
-            <S.ControlsWrapper>
-              <Controls moveQuery={moveQuery} isRunning={isRunning} handleSwitchPlaying={handleSwitchPlaying} />  
-            </S.ControlsWrapper>
-          )
-          : <Controls moveQuery={moveQuery} isRunning={isRunning} handleSwitchPlaying={handleSwitchPlaying} />}
-        </>
+        <ControlsWrapper>
+          <Controls moveQuery={moveQuery} isRunning={isRunning} handleSwitchPlaying={handleSwitchPlaying} />
+        </ControlsWrapper>
       )}
 
       {shouldShowTimeController && (
-        <TimeController elapsedTime={elapsedTime} onElapseTime={handleElapseTime} timeInSeconds={music.duration} isRunning={isRunning} />
+        <TimeController elapsedTime={elapsedTime} onElapseTime={handleElapseTime} musicDuration={music.duration} isRunning={isRunning} />
       )}
-  </S.Container>
+    </S.Container>
   )
 }

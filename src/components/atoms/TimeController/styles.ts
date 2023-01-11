@@ -11,12 +11,19 @@ interface SliderProps {
 }
 
 export const Slider = styled.div<SliderProps>`
+  position: relative;
   height: 6px;
   width: 100%;
   border-radius: 9.6px;
   background: ${props => transparentize(0.4, props.theme.white[300])};
   
-  > div {
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    display: block;
     height: 100%;
     width: ${props => props.percentage}%;
     border-radius: 9.6px;

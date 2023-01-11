@@ -8,7 +8,7 @@ export const Container = styled.main`
   height: 100%;
   padding: 20px;
 
-  > div {
+  > section {
     display: grid;
     grid-template-areas: 
       "a b"
